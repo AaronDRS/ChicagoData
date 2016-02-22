@@ -1,0 +1,19 @@
+.jumbotron {
+    background: url("../imgs/9.jpg") no-repeat;
+    height: auto;
+}
+
+.jumbotron h1 {
+    color: white;
+    text-align: center;
+}
+
+header img {
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+#tableContainer {
+    margin: 0 auto;
+    width: 90%;
+}
