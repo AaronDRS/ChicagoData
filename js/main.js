@@ -1,77 +1,81 @@
-$(document).ready(function() {
-    $('#example').DataTable( {
-        "ajax": "data.json",
-        "columns": [
-            { "data": "id" },
-            { "data": "beat" },
-            { "data": "block" },
-            { "data": "description" },
-            { "data": "primary_type" },
-            { "data": "fbi_code" }
-        ]
-    } );
+var app = (function(window, undefined){
+
+    var ctx = document.getElementById("canvas").getContext("2d");
+
+    function getDataTables(){
+        $('#example').DataTable({
+            "ajax": "data.json",
+            "columns": [{
+                "data": "id"
+            }, {
+                "data": "beat"
+            }, {
+                "data": "block"
+            }, {
+                "data": "description"
+            }, {
+                "data": "primary_type"
+            }, {
+                "data": "fbi_code"
+            }]
+        });
+    }
 
 
+    function getCharts(){
 
+      $.ajax({
+         url: 'data.json',
+         data: {
+         format: 'json'
+         },
 
+         error: function() {
+            alert('An error has occurred');
+         },
 
-} );
+         dataType: 'json',
+         success: function(data) {
+            console.log(data.data);
+            console.log();
+            var lineChartData = {
+                labels: [data.data[0].date, data.data[1].date, data.data[2].date, data.data[3].date,  "June", "July"],
+                datasets: [{
+                    label: "My First dataset",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [65, 59, 80, 81, 56, 55, 40]
+                }, {
+                    label: "My Second dataset",
+                    fillColor: "rgba(151,187,205,0.2)",
+                    strokeColor: "rgba(151,187,205,1)",
+                    pointColor: "rgba(151,187,205,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(151,187,205,1)",
+                    data: [28, 48, 40, 19, 86, 27, 90]
+                }]
+            };
 
-//var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
-		var lineChartData = {
-			labels : ["January","February","March","April","May","June","July"],
-			datasets : [
-				{
-					label: "My First dataset",
-					fillColor : "rgba(220,220,220,0.2)",
-					strokeColor : "rgba(220,220,220,1)",
-					pointColor : "rgba(220,220,220,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(220,220,220,1)",
-					data: [65, 59, 80, 81, 56, 55, 40]
-				},
-				{
-					label: "My Second dataset",
-					fillColor : "rgba(151,187,205,0.2)",
-					strokeColor : "rgba(151,187,205,1)",
-					pointColor : "rgba(151,187,205,1)",
-					pointStrokeColor : "#fff",
-					pointHighlightFill : "#fff",
-					pointHighlightStroke : "rgba(151,187,205,1)",
-					data: [28, 48, 40, 19, 86, 27, 90]
-				}
-			]
-		};
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: true
+            });
 
-		var barChartData = {
-	labels : ["January","February","March","April","May","June","July"],
-	datasets : [
-		{
-			fillColor : "rgba(220,220,220,0.5)",
-			strokeColor : "rgba(220,220,220,0.8)",
-			highlightFill: "rgba(220,220,220,0.75)",
-			highlightStroke: "rgba(220,220,220,1)",
-			data: [65, 59, 80, 81, 56, 55, 40]
+         },
+         type: 'GET'
+      });
+    }
 
-		},
-		{
-			fillColor : "rgba(151,187,205,0.5)",
-			strokeColor : "rgba(151,187,205,0.8)",
-			highlightFill : "rgba(151,187,205,0.75)",
-			highlightStroke : "rgba(151,187,205,1)",
-			data: [28, 48, 40, 19, 86, 27, 90]
-
-		}
-	]
+return {
+    getDataTables: getDataTables,
+    getCharts: getCharts,
 };
-	window.onload = function(){
-		var ctx = document.getElementById("canvas").getContext("2d");
-		window.myLine = new Chart(ctx).Line(lineChartData, {
-			responsive: true
-		});
-		var ctx2 = document.getElementById("canvas2").getContext("2d");
-		window.myBar = new Chart(ctx2).Bar(barChartData, {
-			responsive : true
-		});
-	};
+
+})(window);
+app.getDataTables();
+app.getCharts();
+
