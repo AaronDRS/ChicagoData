@@ -7,7 +7,7 @@ var app = (function(window, undefined) {
     function getDataTables() {
         $('#example').DataTable({
             "ajax": "data.json",
-            
+
             "columns": [{
                 "data": "id"
             }, {
@@ -42,6 +42,12 @@ var app = (function(window, undefined) {
                 console.log(data.data);
 
                 //creates a line chart
+
+               /*
+                ---------------------------------------------
+                Starts lineChartData
+                ---------------------------------------------
+               */
                 var lineChartData = {
 
                     //labels that will be printed in Chart
@@ -54,7 +60,7 @@ var app = (function(window, undefined) {
                         pointStrokeColor: "#fff",
                         pointHighlightFill: "#fff",
                         pointHighlightStroke: "rgba(220,220,220,1)",
-                        data: [90, 80, 70, 60, 50]
+                        data: []
                     }]
                 };
 
@@ -76,14 +82,25 @@ var app = (function(window, undefined) {
                             console.log(crimeType[prop] += 1);
                         }
                     }
-                    //lineChartData.labels.push(prop);
                 }
-
+                for(var index in crimeType){
+                    lineChartData.labels.push(index);
+                    //lineChartData.datasets.data.push(crim);
+                    lineChartData.datasets[0].data.push(crimeType[index]);
+                    console.log(lineChartData.datasets[0].data);
+                    console.error(crimeType);
+                }
                 console.log(lineChartData.labels);
                 //A new object of Chart class
                 window.myLine = new Chart(ctx).Line(lineChartData, {
                     responsive: true
                 });
+
+                /*
+                 ---------------------------------------------
+                 lineChartData Ends
+                 ---------------------------------------------
+                */
 
             },
             type: 'GET'
