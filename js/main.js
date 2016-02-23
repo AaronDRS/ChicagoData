@@ -68,11 +68,9 @@ var app = (function(window, undefined) {
                         }
 
                     }
-                    lineChartData.labels.push(prop);
+                    //lineChartData.labels.push(prop);
                 }
-                //console.log(crimeType);
-                //suma = crimeType.ARSON + crimeType.ASSAULT + crimeType.BATTERY  +crimeType.HOMICIDE +crimeType.NARCOTICS;
-                //console.log(suma);
+
                 console.log(lineChartData.labels);
                 window.myLine = new Chart(ctx).Line(lineChartData, {
                     responsive: true
