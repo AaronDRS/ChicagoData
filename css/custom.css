@@ -1,3 +1,14 @@
+//custom styles
+
+/*---------------   I D S  ---- ------------*/
+
+#tableContainer {
+    margin: 0 auto;
+    width: 90%;
+}
+
+/*---------------  C L A S E S   ------------*/
+
 .jumbotron {
     background: url("../imgs/9.jpg") no-repeat;
     height: auto;
@@ -8,12 +19,9 @@
     text-align: center;
 }
 
+/*---------------  T A G S   ---------------*/
+
 header img {
     margin-bottom: 50px;
     width: 100%;
-}
-
-#tableContainer {
-    margin: 0 auto;
-    width: 90%;
 }

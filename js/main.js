@@ -1,10 +1,13 @@
 var app = (function(window, undefined) {
 
+    //get the context of the canvas element we want to select
     var ctx = document.getElementById("canvas").getContext("2d");
 
+    //get json data to swot it in a table
     function getDataTables() {
         $('#example').DataTable({
             "ajax": "data.json",
+            
             "columns": [{
                 "data": "id"
             }, {
@@ -21,7 +24,7 @@ var app = (function(window, undefined) {
         });
     }
 
-
+    //get data to show it in charts
     function getCharts() {
 
         $.ajax({
@@ -37,7 +40,11 @@ var app = (function(window, undefined) {
             dataType: 'json',
             success: function(data) {
                 console.log(data.data);
+
+                //creates a line chart
                 var lineChartData = {
+
+                    //labels that will be printed in Chart
                     labels: [],
                     datasets: [{
                         label: "My First dataset",
@@ -51,6 +58,7 @@ var app = (function(window, undefined) {
                     }]
                 };
 
+                //An object to compare with data index PROPERTIES
                 var crimeType = {
                     ARSON: 0,
                     ASSAULT: 0,
@@ -63,15 +71,16 @@ var app = (function(window, undefined) {
                 for (var i in data.data) {
                     for (var prop in crimeType) {
                         if (data.data[i].primary_type === prop) {
+                            //count quantity of every crimeType
+                            //FOUND in json data
                             console.log(crimeType[prop] += 1);
-                            //console.log(data.data[i].primary_type);
                         }
-
                     }
                     //lineChartData.labels.push(prop);
                 }
 
                 console.log(lineChartData.labels);
+                //A new object of Chart class
                 window.myLine = new Chart(ctx).Line(lineChartData, {
                     responsive: true
                 });
@@ -87,5 +96,7 @@ var app = (function(window, undefined) {
     };
 
 })(window);
+
+//Calling that we need
 app.getDataTables();
 app.getCharts();
