@@ -53,7 +53,7 @@ var app = (function(window, undefined) {
                     //labels that will be printed in Chart
                     labels: [],
                     datasets: [{
-                        label: "My First dataset",
+                        label: "Crime most happen",
                         fillColor: "rgba(220,220,220,0.2)",
                         strokeColor: "rgba(220,220,220,1)",
                         pointColor: "rgba(220,220,220,1)",
@@ -99,6 +99,72 @@ var app = (function(window, undefined) {
                 /*
                  ---------------------------------------------
                  lineChartData Ends
+                 ---------------------------------------------
+                */
+
+
+                /*
+                 ---------------------------------------------
+                 Start BarChart
+                 ---------------------------------------------
+                */
+
+                var barChartData = {
+                    labels: [],
+                    datasets: [{
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: []
+                    }]
+                };
+
+                var yearsUntilNow = {
+                    2001: 0,
+                    2002: 0,
+                    2003: 0,
+                    2004: 0,
+                    2005: 0,
+                    2006: 0,
+                    2007: 0,
+                    2008: 0,
+                    2009: 0,
+                    2010: 0,
+                    2011: 0,
+                    2012: 0,
+                    2013: 0,
+                    2014: 0,
+                    2015: 0
+                };
+
+
+                for (var a in data.data) {
+                    for (var ano in yearsUntilNow) {
+                        if (data.data[a].year === ano && data.data[a].arrest === true) {
+                            //count quantity of every arrest for year
+                            console.log(yearsUntilNow[ano] += 1);
+                            console.log(yearsUntilNow);
+                        }
+                    }
+                }
+
+
+                for(var b in yearsUntilNow){
+                    barChartData.labels.push(b);
+                    barChartData.datasets[0].data.push(yearsUntilNow[b]);
+
+                }
+
+                var ctxx = document.getElementById("canvas2").getContext("2d");
+                window.myBar = new Chart(ctxx).Bar(barChartData, {
+                    responsive : true
+                });
+
+
+                /*
+                 ---------------------------------------------
+                 BarChart  Ends
                  ---------------------------------------------
                 */
 
