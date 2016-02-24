@@ -1,38 +1,61 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-     //data-toggle="modal" data-target="#myModal"
-     $(".odd").attr("id","hola");
-     //$(".odd").attr("data-toggle","modal");
-     //$(".odd").attr("data-target","#myModal");
-     var rows= document.getElementById('hola');
-     var rows2 =document.getElementsByClassName('odd');
+    /*
+    data-toggle="modal" data-target="#myModal"
+    adding attributes needded for bootstrap modal
+    */
+    $(".odd").attr("id", "odRows");
+    $(".odd").attr("data-toggle", "modal");
+    $(".odd").attr("data-target", "#myModal");
 
+    $(".even").attr("id", "evenRows");
+    $(".even").attr("data-toggle", "modal");
+    $(".even").attr("data-target", "#myModal");
 
+    var rowsO = document.getElementById('odRows');
+    var rowsE = document.getElementById('evenRows');
 
+    /*
+    ------------------------------------------------------
+    ->Set a listener or event(click) to display
+    **latitude
+    **longitud
+    display-mode: google map contained by a bootstrap modal
+    -----------------------------------------------------
+    */
 
+    function whatClicked(event) {
 
-function whatClicked(event) {
-	var last = event.target.nextSibling.nextSibling.innerHTML;
-	var longi = event.target.nextSibling.nextSibling.nextSibling.innerHTML;
-    	alert(event.target.innerHTML);
-		 alert(last + " " + longi);
+        //get longitud and latitude from table
+        var lati = parseInt(event.target.nextSibling.nextSibling.nextSibling.innerHTML);
+        var longi = parseInt(event.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML);
 
-}
+        function initMap() {
 
-rows.addEventListener("click", whatClicked);
+            //Set coordinates
+            var myLatLng = {
+                lat: lati,
+                lng: longi
+            };
 
-});
-function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
-
-        var map = new google.maps.Map(document.getElementById('map'), {
+            var map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 4,
                 center: myLatLng
-        });
+            });
 
-        var marker = new google.maps.Marker({
+            //Set a Marker a
+            var marker = new google.maps.Marker({
                 position: myLatLng,
                 map: map,
-                title: 'Hello World!'
-        });
-}
+                title: event.target.innerHTML
+            });
+        }
+
+        //call initMap here and callback in tag script is blank
+        initMap();
+    }
+
+    rowsO.addEventListener("click", whatClicked);
+    rowsE.addEventListener("click", whatClicked);
+
+});

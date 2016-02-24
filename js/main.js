@@ -19,9 +19,9 @@ var app = (function(window, undefined) {
             }, {
                 "data": "primary_type"
             }, {
-                "data": "id",
+                "data": "latitude",
             }, {
-                "data": "beat",
+                "data": "longitude",
             }]
         });
     }
@@ -90,9 +90,9 @@ var app = (function(window, undefined) {
                     //lineChartData.datasets.data.push(crim);
                     lineChartData.datasets[0].data.push(crimeType[index]);
                     console.log(lineChartData.datasets[0].data);
-                    console.error(crimeType);
+                    //console.error(crimeType);
                 }
-                console.log(lineChartData.labels);
+                //console.log(lineChartData.labels);
                 //A new object of Chart class
                 window.myLine = new Chart(ctx).Line(lineChartData, {
                     responsive: true
@@ -147,7 +147,7 @@ var app = (function(window, undefined) {
                         if (data.data[a].year === ano && data.data[a].arrest === true) {
                             //count quantity of every arrest for year
                             yearsUntilNow[ano] += 1;
-                            console.log(yearsUntilNow);
+                            //console.log(yearsUntilNow);
                         }
                     }
                 }
@@ -168,20 +168,6 @@ var app = (function(window, undefined) {
                 /*
                  ---------------------------------------------
                  BarChart  Ends
-                 ---------------------------------------------
-                */
-
-                /*
-                 ---------------------------------------------
-                 Start Map
-                 ---------------------------------------------
-                */
-
-
-
-                /*
-                 ---------------------------------------------
-                 Map  Ends
                  ---------------------------------------------
                 */
 
