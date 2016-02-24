@@ -11,7 +11,7 @@ var app = (function(window, undefined) {
             "columns": [{
                 "data": "id"
             }, {
-                "data": "beat"
+                "data": "arrest"
             }, {
                 "data": "block"
             }, {
@@ -19,7 +19,9 @@ var app = (function(window, undefined) {
             }, {
                 "data": "primary_type"
             }, {
-                "data": "fbi_code"
+                "data": "id",
+            }, {
+                "data": "beat",
             }]
         });
     }
@@ -112,13 +114,14 @@ var app = (function(window, undefined) {
                 var barChartData = {
                     labels: [],
                     datasets: [{
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
-                        data: []
+                        fillColor : "rgba(151,187,205,0.5)",
+				        strokeColor : "rgba(151,187,205,0.8)",
+				        highlightFill : "rgba(151,187,205,0.75)",
+				        highlightStroke : "rgba(151,187,205,1)",
+                        data:[]
                     }]
                 };
+                Chart.defaults.global.legendTemplate =  "<h2>Arrest per Year</h2><ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>";
 
                 var yearsUntilNow = {
                     2001: 0,
@@ -143,7 +146,7 @@ var app = (function(window, undefined) {
                     for (var ano in yearsUntilNow) {
                         if (data.data[a].year === ano && data.data[a].arrest === true) {
                             //count quantity of every arrest for year
-                            console.log(yearsUntilNow[ano] += 1);
+                            yearsUntilNow[ano] += 1;
                             console.log(yearsUntilNow);
                         }
                     }
@@ -168,14 +171,31 @@ var app = (function(window, undefined) {
                  ---------------------------------------------
                 */
 
+                /*
+                 ---------------------------------------------
+                 Start Map
+                 ---------------------------------------------
+                */
+
+
+
+                /*
+                 ---------------------------------------------
+                 Map  Ends
+                 ---------------------------------------------
+                */
+
+
             },
             type: 'GET'
         });
     }
 
+
     return {
         getDataTables: getDataTables,
         getCharts: getCharts,
+
     };
 
 })(window);
