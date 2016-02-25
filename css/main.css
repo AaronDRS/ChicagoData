@@ -11,6 +11,31 @@
     width: 95%;
 }
 
+#example_filter {
+    float: right;;
+}
+
+#example_filter > label input[type="search"]{
+    margin-left: 10px;
+}
+
+#example_info,
+#example_paginate {
+    text-align: center;
+}
+
+#example_wrapper :first-child {
+    margin: 5px 0;
+}
+
+#odRows :nth-of-type(3),
+#evenRows :nth-of-type(3),
+.sorting_1  {
+    color: #18BC9C;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 /*---------------  C L A S E S   ------------*/
 
 .chart {
@@ -34,9 +59,6 @@
     width: 80%;
 }
 
-.mapContainer {
-    background-color: red;
-}
 
 /*---------------  T A G S   ---------------*/
 

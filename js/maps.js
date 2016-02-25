@@ -4,6 +4,10 @@ $(document).ready(function() {
     data-toggle="modal" data-target="#myModal"
     adding attributes needded for bootstrap modal
     */
+    $(".sorting_1").attr("id", "odRows");
+    $(".sorting_1").attr("data-toggle", "modal");
+    $(".sorting_1").attr("data-target", "#myModal");
+
     $(".odd").attr("id", "odRows");
     $(".odd").attr("data-toggle", "modal");
     $(".odd").attr("data-target", "#myModal");
@@ -11,6 +15,9 @@ $(document).ready(function() {
     $(".even").attr("id", "evenRows");
     $(".even").attr("data-toggle", "modal");
     $(".even").attr("data-target", "#myModal");
+
+    $( "#example_info" ).parent( "div" ).attr("class","col-sm-12");
+    $( "#example_paginate" ).parent( "div" ).attr("class","col-sm-12");
 
     var rowsO = document.getElementById('odRows');
     var rowsE = document.getElementById('evenRows');
@@ -29,6 +36,7 @@ $(document).ready(function() {
         //get longitud and latitude from table
         var lati = parseInt(event.target.nextSibling.nextSibling.nextSibling.innerHTML);
         var longi = parseInt(event.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML);
+
 
         function initMap() {
 
